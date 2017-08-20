@@ -1,0 +1,220 @@
+﻿@model Churras.Web.Models.Churrascos.DetalhesViewModel
+
+@{
+    ViewBag.Title = Model.ChurrascoDetalhes.Descricao;
+}
+
+<p>
+    @Html.ActionLink("< Voltar", "Index")
+</p>
+
+<h3 class="text-center">
+    @Html.DisplayFor(model => model.ChurrascoDetalhes.Descricao)
+</h3>
+
+<div class="row justify-content-center">
+    <div class="col-md-6 churras-section mr-2 p-4">
+        <div class="row justify-content-end mr-2">
+            @Html.ActionLink("Editar", "Editar", new { /* id = Model.PrimaryKey */ })
+        </div>
+        <div class="row m-2">
+            <p>
+                Dia @Html.DisplayFor(model => model.ChurrascoDetalhes.Data)
+            </p>
+            <p>
+                @Html.DisplayFor(model => model.ChurrascoDetalhes.Obs)
+            </p>
+
+            <p>
+                Quantos pila?
+            </p>
+
+            <p>
+
+                <table class="table">
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorComBebida)
+                        </td>
+                        <td>
+                            R$ @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorComBebida)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorSemBebida)
+                        </td>
+                        <td>
+                            R$ @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorSemBebida)
+                        </td>
+                    </tr>
+                </table>
+            </p>
+            <button type="button" class="btn btn-primary">+ Adicionar Participante</button>
+        </div>
+    </div>
+    <div class="col-md-4 churras-section ml-2 p-4">
+        <p>
+            Participação:
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.ChurrascoDetalhes.TotalParticipantes)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.ChurrascoDetalhes.TotalParticipantes)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.ChurrascoDetalhes.TotalBebuns)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.ChurrascoDetalhes.TotalBebuns)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.ChurrascoDetalhes.TotalSaudaveis)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.ChurrascoDetalhes.TotalSaudaveis)
+                    </td>
+                </tr>
+            </table>          
+        </p>
+        <p>
+            Finanças:
+            <table class="table table-bordered table-inverse">
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorPendente)
+                    </td>
+
+                    <td>
+                        R$ @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorPendente)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorPago)
+                    </td>
+
+                    <td>
+                        R$ @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorPago)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </p>
+    </div>
+</div>
+
+
+<style>
+    .churras-section {
+        border: dashed 1px grey;
+        border-radius: 50px;
+    }
+</style>
+
+
+@*<h2>View</h2>
+
+    <div>
+        <h4>ChurrascoDetalhes</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.Key)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ChurrascoDetalhes.Key)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.Descricao)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ChurrascoDetalhes.Descricao)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.Data)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ChurrascoDetalhes.Data)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorComBebida)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorComBebida)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorSemBebida)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorSemBebida)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.TotalParticipantes)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ChurrascoDetalhes.TotalParticipantes)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorPendente)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorPendente)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorPago)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorPago)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.TotalBebuns)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ChurrascoDetalhes.TotalBebuns)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.TotalSaudaveis)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ChurrascoDetalhes.TotalSaudaveis)
+            </dd>
+
+        </dl>
+    </div>*@

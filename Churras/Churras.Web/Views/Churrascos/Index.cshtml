@@ -1,0 +1,55 @@
+﻿@model Churras.Web.Models.Churrascos.IndexViewModel
+
+
+
+<div class="row">
+    <div class="col-12 text-center">
+        <h3>Churrascos</h3>
+    </div>
+    <div class="col-12">
+        <table class="table table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th width="15%">
+                        @Html.DisplayNameFor(model => model.ChurrascoDashboard.Items.FirstOrDefault().Data)
+                    </th>
+                    <th width="30%">
+                        @Html.DisplayNameFor(model => model.ChurrascoDashboard.Items.FirstOrDefault().Descricao)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ChurrascoDashboard.Items.FirstOrDefault().Participantes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ChurrascoDashboard.Items.FirstOrDefault().TotalArrecadado)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChurrascoDashboard.Items)
+                {
+                    <tr>
+                        <td>
+                            @Html.HiddenFor(modelItem => item.Key)
+                            @Html.DisplayFor(modelItem => item.Data)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descricao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Participantes)
+                        </td>
+                        <td>
+                            R$@Html.DisplayFor(modelItem => item.TotalArrecadado)
+                        </td>
+                        <td>
+                            @*@Html.ActionLink("Editar", "Edit", new { id = item.Key }) |*@
+                            @Html.ActionLink("Detalhes >", "Detalhes", new { key = item.Key })
+                            @*@Html.ActionLink("Remover", "Delete", new { id = item.Key })*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

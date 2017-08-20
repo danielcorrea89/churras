@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Fav Icon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="~/Content/FavIcons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/Content/FavIcons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Content/FavIcons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/FavIcons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Content/FavIcons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/Content/FavIcons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/Content/FavIcons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/Content/FavIcons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/FavIcons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/Content/FavIcons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/FavIcons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/FavIcons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/FavIcons/favicon-16x16.png">
+    <link rel="manifest" href="~/Content/FavIcons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="~/Content/FavIcons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Trinca Churras</title>
+    
+    <link href="~/Content/Views/Shared/Layout.css" rel="stylesheet" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/Bootstrap/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-faded justify-content-around">
+        <a class="navbar-brand align-self-center" href="@Url.Action("Index","Home")">
+            <img src="~/Content/FavIcons/apple-icon-144x144.png" width="30" height="30" class="d-inline-block align-top" alt="" />
+            Os Churras da Trinca
+        </a>
+    </nav>
+    <div class="container" style="background-color: grey;">
+        <div class="row justify-content-around">
+            <div class="col-md-10 mt-3 p-4" style="background-color: lightgray;">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+        ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="~/Scripts/jquery-3.1.1.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>

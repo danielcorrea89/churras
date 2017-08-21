@@ -15,4 +15,23 @@ namespace Churras.Web.Models.Churrascos
     {
         public ChurrascoDetalhes ChurrascoDetalhes { get; set; }
     }
+
+    public class CriarViewModel
+    {
+        public Churrasco Churrasco { get; set; }
+    }
+
+    public class CriarParticipanteViewModel
+    {
+        public Participante Participante { get; set; }
+        public int ChurrascoKey { get; set; }
+    }
+
+    public class ListaParticipantesViewModel
+    {
+        public IEnumerable<Participante> Participantes { get; set; }
+
+        public int ChurrascoKey { get; set; }
+        public string ChurrascoNome { get; internal set; }      
+    }
 }

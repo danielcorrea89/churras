@@ -6,8 +6,8 @@ namespace Churras.Data
 {
     public class ChurrasDbContext : DbContext
     {
-        //const string conn = "ChurrasDbLocal";
-        const string conn = "ChurrasDbAzure";
+        const string conn = "ChurrasDbLocal";
+        //const string conn = "ChurrasDbAzure";
 
         public ChurrasDbContext() :
             base(conn)
@@ -25,8 +25,8 @@ namespace Churras.Data
                         .Where(p => p.Name == "Key")
                         .Configure(p => p.IsKey());
 
-            modelBuilder.Properties<DateTime>()
-                .Configure(c => c.HasColumnType("datetime2"));
+            //modelBuilder.Properties<DateTime>()
+            //    .Configure(c => c.HasColumnType("datetime2"));
         }
     }
 }

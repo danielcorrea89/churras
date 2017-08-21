@@ -7,20 +7,24 @@ namespace Churras.Models
     {
         public int Key { get; set; }
 
+        [Required]
         [DisplayName("Nome")]
         public string Nome { get; set; }
 
-        [DisplayName("Valor da Contribuição?")]
+        [Required]
+        [DisplayName("Valor da Contribuição")]
         public double ValorContribuicao { get; set; }
 
+        [Required]
         [DisplayName("Pago?")]
         public bool Pago { get; set; }
-
+        
+        [Required]
+        [DisplayName("Com Bebida?")]
         public bool Bebida { get; set; }
 
         public string Obs { get; set; }
 
-        [Required]
-        public Churrasco Churrasco { get; set; }
+        public virtual Churrasco Churrasco { get; set; }
     }
 }

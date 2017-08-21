@@ -1,0 +1,77 @@
+﻿@model Churras.Web.Models.Churrascos.ListaParticipantesViewModel
+
+<div class="modal-content">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal-header">
+            <h5 class="modal-title">Participantes @Model.ChurrascoNome</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <table class="table">
+                <tr>
+                    <th width="30%">
+                        @Html.DisplayNameFor(model => model.Participantes.FirstOrDefault().Nome)
+                    </th>
+                    <th width="10%">
+                        Valor
+                    </th>
+                    <th width="10%">
+                        Pago
+                    </th>
+                    <th width="10%">
+                        Bebida
+                    </th>
+                    <th width="40%">
+                        @Html.DisplayNameFor(model => model.Participantes.FirstOrDefault().Obs)
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.Participantes)
+                {
+                    <tr>
+                        <td>
+                            @Html.HiddenFor(modelItem => item.Key)
+
+                            @Html.DisplayFor(modelItem => item.Nome) 
+                            @Html.ActionLink("x", "RemoverParticipante", new { key= item.Key, churrascoKey = Model.ChurrascoKey })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ValorContribuicao)
+                        </td>
+                        <td>
+                            @Html.EditorFor(modelItem => item.Pago, new { @class = "form-control" })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Bebida)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Obs)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+    }
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $.validator.unobtrusive.parse($("form"));
+        });
+    </script>
+}

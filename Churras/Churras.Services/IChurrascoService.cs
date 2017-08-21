@@ -11,5 +11,9 @@ namespace Churras.Services
     {
         ChurrascoDashboard GetChurrascoDashboard();
         ChurrascoDetalhes GetChurrascoDetails(int key);
+        void SaveChurrasco(Churrasco churrasco);
+        void SaveParticipante(Participante participante, int churrascoKey);
+        IEnumerable<Participante> GetParticipanteList(int key);
+        void DeleteParticipante(int key, int churrascoKey);
     }
 }

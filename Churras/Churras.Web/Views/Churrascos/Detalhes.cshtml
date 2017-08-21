@@ -9,7 +9,7 @@
 </p>
 
 <h3 class="text-center">
-    @Html.DisplayFor(model => model.ChurrascoDetalhes.Descricao)
+    Detalhes do Churras: @Html.DisplayFor(model => model.ChurrascoDetalhes.Descricao)
 </h3>
 
 <div class="row justify-content-center">
@@ -18,39 +18,37 @@
             @Html.ActionLink("Editar", "Editar", new { /* id = Model.PrimaryKey */ })
         </div>
         <div class="row m-2">
-            <p>
+            <p class="w-100">
                 Dia @Html.DisplayFor(model => model.ChurrascoDetalhes.Data)
             </p>
-            <p>
+            <p class="w-100">
                 @Html.DisplayFor(model => model.ChurrascoDetalhes.Obs)
             </p>
 
-            <p>
+            <p class="w-100">
                 Quantos pila?
             </p>
 
-            <p>
-
-                <table class="table">
-                    <tr>
-                        <td>
-                            @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorComBebida)
-                        </td>
-                        <td>
-                            R$ @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorComBebida)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorSemBebida)
-                        </td>
-                        <td>
-                            R$ @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorSemBebida)
-                        </td>
-                    </tr>
-                </table>
+            <table class="table">
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorComBebida)
+                    </td>
+                    <td>
+                        R$ @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorComBebida)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorSemBebida)
+                    </td>
+                    <td>
+                        R$ @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorSemBebida)
+                    </td>
+                </tr>
+            </table>
             </p>
-            <button type="button" class="btn btn-primary">+ Adicionar Participante</button>
+            <button type="button" id="CriarParticipante" data-url="@Url.Action("CriarParticipante", new { churrascoKey = Model.ChurrascoDetalhes.Key })" class="btn btn-primary">+ Adicionar Participante</button>
         </div>
     </div>
     <div class="col-md-4 churras-section ml-2 p-4">
@@ -85,7 +83,8 @@
                         @Html.DisplayFor(model => model.ChurrascoDetalhes.TotalSaudaveis)
                     </td>
                 </tr>
-            </table>          
+            </table>
+            <a id="ListaParticipantes" href="#" data-url="@Url.Action("ListaParticipantes", Model.ChurrascoDetalhes)">Ver participantes</a>
         </p>
         <p>
             Finanças:
@@ -122,6 +121,13 @@
 </div>
 
 
+<div id="churrascoModal" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"></div>
+    </div>
+</div>
+
+
 <style>
     .churras-section {
         border: dashed 1px grey;
@@ -129,92 +135,31 @@
     }
 </style>
 
+@section scripts {
 
-@*<h2>View</h2>
+    @Scripts.Render("~/bundles/jqueryval")
 
-    <div>
-        <h4>ChurrascoDetalhes</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.Key)
-            </dt>
+    <script>
+        $(document).ready(function () {
+            $('#CriarParticipante').click(function () {
 
-            <dd>
-                @Html.DisplayFor(model => model.ChurrascoDetalhes.Key)
-            </dd>
+                var url = $(this).data('url');
 
-            <dt>
-                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.Descricao)
-            </dt>
+                $.get(url, function (data) {
+                    $('.modal-content').replaceWith(data);
+                    $('#churrascoModal').modal('show');
+                });
+            });
 
-            <dd>
-                @Html.DisplayFor(model => model.ChurrascoDetalhes.Descricao)
-            </dd>
+            $('#ListaParticipantes').click(function () {
 
-            <dt>
-                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.Data)
-            </dt>
+                var url = $(this).data('url');
 
-            <dd>
-                @Html.DisplayFor(model => model.ChurrascoDetalhes.Data)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorComBebida)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorComBebida)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorSemBebida)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorSemBebida)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.TotalParticipantes)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ChurrascoDetalhes.TotalParticipantes)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorPendente)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorPendente)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.ValorPago)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ChurrascoDetalhes.ValorPago)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.TotalBebuns)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ChurrascoDetalhes.TotalBebuns)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ChurrascoDetalhes.TotalSaudaveis)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ChurrascoDetalhes.TotalSaudaveis)
-            </dd>
-
-        </dl>
-    </div>*@
+                $.get(url, function (data) {
+                    $('.modal-content').replaceWith(data);
+                    $('#churrascoModal').modal('show');
+                });
+            });
+        });
+    </script>
+}

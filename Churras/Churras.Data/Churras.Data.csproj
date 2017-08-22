@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementation\ChurrasDbContext.cs" />
-    <Compile Include="ChurrasDbInitializer.cs" />
+    <Compile Include="Implementation\ChurrasDbInitializer.cs" />
     <Compile Include="Implementation\GenericRepository.cs" />
     <Compile Include="Interfaces\IChurrasDbContext.cs" />
     <Compile Include="Interfaces\IRepository.cs" />

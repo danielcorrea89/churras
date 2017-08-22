@@ -7,9 +7,9 @@ namespace Churras.Web.Controllers
 {
     public class ChurrascosController : Controller
     {
-        IChurrascoService ChurrascoService;
+        IChurrasAppService ChurrascoService;
 
-        public ChurrascosController(IChurrascoService churrascoService)
+        public ChurrascosController(IChurrasAppService churrascoService)
         {
             ChurrascoService = churrascoService;
         }
@@ -20,7 +20,7 @@ namespace Churras.Web.Controllers
             var model = new IndexViewModel();
 
             model.ChurrascoDashboard = ChurrascoService.GetChurrascoDashboard();
-            
+
             return View(model);
         }
 
@@ -44,22 +44,19 @@ namespace Churras.Web.Controllers
         [HttpPost]
         public ActionResult Criar(CriarViewModel model)
         {
-            try
-            {
-                ChurrascoService.SaveChurrasco(model.Churrasco);
+            ChurrascoService.SaveChurrasco(model.Churrasco);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
-        public PartialViewResult CriarParticipante(int churrascoKey)
+        public PartialViewResult CriarParticipante(int churrascoKey, double valorSemBebida, double valorComBebida)
         {
             var model = new CriarParticipanteViewModel();
+
             model.ChurrascoKey = churrascoKey;
+            model.ValorSemBebida = valorSemBebida;
+            model.ValorComBebida = valorComBebida;
+
             return PartialView("_CriarParticipante", model);
         }
 
@@ -88,48 +85,10 @@ namespace Churras.Web.Controllers
             return RedirectToAction("Detalhes", new { key = churrascoKey });
         }
 
-        // GET: Churrascos/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult PagarParticipante(int key, int churrascoKey)
         {
-            return View();
-        }
-
-        // POST: Churrascos/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Churrascos/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Churrascos/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            ChurrascoService.UpdateParticipantePagamento(key, churrascoKey);
+            return RedirectToAction("Detalhes", new { key = churrascoKey });
         }
     }
 }

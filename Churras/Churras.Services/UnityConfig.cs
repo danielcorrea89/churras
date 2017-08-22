@@ -9,7 +9,7 @@ namespace Churras.Services
             // Resolve Churras.Data dependencies
             Churras.Data.UnityConfig.RegisterComponents(container);
 
-            container.RegisterType<IChurrascoService, ChurrascoService>();
+            container.RegisterType<IChurrasAppService, ChurrasAppService>();
         }
     }
 }

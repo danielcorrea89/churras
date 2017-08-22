@@ -4,10 +4,10 @@ using System;
 
 namespace Churras.Data
 {
-    public class ChurrasDbContext : DbContext
+    public class ChurrasDbContext : DbContext, IChurrasDbContext
     {
-        const string conn = "ChurrasDbLocal";
-        //const string conn = "ChurrasDbAzure";
+        //const string conn = "ChurrasDbLocal";
+        const string conn = "ChurrasDbAzure";
 
         public ChurrasDbContext() :
             base(conn)
@@ -16,8 +16,8 @@ namespace Churras.Data
             Database.SetInitializer(new ChurrasDbInitializer());
         }
 
-        DbSet<Churrasco> Churrascos { get; set; }
-        DbSet<Participante> Participantes { get; set; }
+        public IDbSet<Churrasco> Churrascos { get; set; }
+        public IDbSet<Participante> Participantes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

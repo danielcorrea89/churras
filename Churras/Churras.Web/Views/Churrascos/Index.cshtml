@@ -1,7 +1,5 @@
 ﻿@model Churras.Web.Models.Churrascos.IndexViewModel
 
-
-
 <div class="row">
     <div class="col-12 text-center">
         <h3>Churrascos</h3>
@@ -44,9 +42,7 @@
                             R$ @Html.DisplayFor(modelItem => item.TotalArrecadado)
                         </td>
                         <td>
-                            @*@Html.ActionLink("Editar", "Edit", new { id = item.Key }) |*@
                             @Html.ActionLink("Detalhes >", "Detalhes", new { key = item.Key })
-                            @*@Html.ActionLink("Remover", "Delete", new { id = item.Key })*@
                         </td>
                     </tr>
                 }

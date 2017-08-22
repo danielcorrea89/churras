@@ -36,59 +36,5 @@ namespace Churras.Models
         public double ValorComBebida { get; set; }
 
         public virtual ICollection<Participante> Participantes { get; set; }
-
-        public int GetTotalParticipantes()
-        {
-            return Participantes.Count;
-        }
-
-        public int GetTotalBebuns()
-        {
-            return GetTotalParticipantes() - GetTotalSaudaveis();
-        }
-
-        public int GetTotalSaudaveis()
-        {
-            int saudaveis = 0;
-
-            foreach (var p in Participantes)
-            {
-                if (!p.Bebida)
-                    saudaveis++;
-            }
-
-            return saudaveis;
-        }
-
-        public double GetValorPendente()
-        {
-            int bebuns = GetTotalBebuns();
-            int saudaveis = GetTotalSaudaveis();
-
-            double pendente = (bebuns * ValorComBebida + saudaveis * ValorSemBebida) - GetValorPago();
-
-            if (pendente > 0)
-                return pendente;
-            else
-                return 0;
-        }
-
-        public double GetValorPago()
-        {
-            double pago = 0;
-
-            foreach (var p in Participantes)
-            {
-                if (p.Pago)
-                    pago += p.ValorContribuicao;
-            }
-
-            return pago;
-        }
-
-        public void AddParticipante(Participante p)
-        {
-            Participantes.Add(p);
-        }
     }
 }

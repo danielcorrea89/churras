@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Churras.Services
 {
-    public interface IChurrascoService
+    public interface IChurrasAppService
     {
         ChurrascoDashboard GetChurrascoDashboard();
         ChurrascoDetalhes GetChurrascoDetails(int key);
@@ -15,5 +15,6 @@ namespace Churras.Services
         void SaveParticipante(Participante participante, int churrascoKey);
         IEnumerable<Participante> GetParticipanteList(int key);
         void DeleteParticipante(int key, int churrascoKey);
+        void UpdateParticipantePagamento(int key, int churrascoKey);
     }
 }

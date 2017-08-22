@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace Churras.Data
 {
-    internal class GenericRepository<T> : IRepository<T> where T : class
+    public class GenericRepository<T> : IRepository<T> where T : class
     {
         private DbContext Context;
 

@@ -14,9 +14,6 @@
 
 <div class="row justify-content-center">
     <div class="col-md-6 churras-section mr-2 p-4">
-        <div class="row justify-content-end mr-2">
-            @Html.ActionLink("Editar", "Editar", new { /* id = Model.PrimaryKey */ })
-        </div>
         <div class="row m-2">
             <p class="w-100">
                 Dia @Html.DisplayFor(model => model.ChurrascoDetalhes.Data)
@@ -48,7 +45,7 @@
                 </tr>
             </table>
             </p>
-            <button type="button" id="CriarParticipante" data-url="@Url.Action("CriarParticipante", new { churrascoKey = Model.ChurrascoDetalhes.Key })" class="btn btn-primary">+ Adicionar Participante</button>
+            <button type="button" id="CriarParticipante" data-url="@Url.Action("CriarParticipante", new { churrascoKey = Model.ChurrascoDetalhes.Key, valorSemBebida = Model.ChurrascoDetalhes.ValorSemBebida, valorComBebida = Model.ChurrascoDetalhes.ValorComBebida })" class="btn btn-primary">+ Adicionar Participante</button>
         </div>
     </div>
     <div class="col-md-4 churras-section ml-2 p-4">
@@ -140,26 +137,39 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
-        $(document).ready(function () {
-            $('#CriarParticipante').click(function () {
 
-                var url = $(this).data('url');
+        $('#CriarParticipante').click(function () {
+            var url = $(this).data('url');
 
-                $.get(url, function (data) {
-                    $('.modal-content').replaceWith(data);
-                    $('#churrascoModal').modal('show');
-                });
-            });
-
-            $('#ListaParticipantes').click(function () {
-
-                var url = $(this).data('url');
-
-                $.get(url, function (data) {
-                    $('.modal-content').replaceWith(data);
-                    $('#churrascoModal').modal('show');
-                });
+            $.get(url, function (data) {
+                $('.modal-content').replaceWith(data);
+                $('#churrascoModal').modal('show');
             });
         });
+
+        $('#ListaParticipantes').click(function () {
+            var url = $(this).data('url');
+
+            $.get(url, function (data) {
+                $('.modal-content').replaceWith(data);
+                $('#churrascoModal').modal('show');
+            });
+        });
+
+        function setProgress() {
+            var pago = '@Model.ChurrascoDetalhes.ValorPago';
+            var pendente = '@Model.ChurrascoDetalhes.ValorPendente';
+            var progress = 0;
+
+            if (pago + pendente > 0) {
+                progress = (pago / (parseFloat(pago) + parseFloat(pendente))) * 100;
+            }
+
+            $('.progress-bar').css('width', progress.toFixed(2).toString() + '%');
+            $('.progress-bar').css('aria-valuenow', progress.toFixed(2));
+            $('.progress-bar').html(progress.toFixed(0).toString() + '%');
+        };
+
+        setProgress();
     </script>
 }

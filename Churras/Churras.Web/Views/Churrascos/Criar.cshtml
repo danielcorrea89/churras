@@ -74,7 +74,7 @@
                 defaultDate: new Date()
             }).datepicker("setDate", new Date());
 
-            //$('#Churrasco_Quando').removeAttr("data-val-date");
+            // Workaround to enable Brazilian format on DatePicker with Unobstrusive Jquery Validation
             var settings = $.data($('form')[0], 'validator').settings;
             settings.ignore = ".ignore";
         });

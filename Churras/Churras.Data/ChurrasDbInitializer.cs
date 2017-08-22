@@ -27,7 +27,7 @@ namespace Churras.Data
                 {
                     Quando = DateTime.Now,
                     Porque = "Final de Ano",
-                    Obs = "Festejar final de ano",
+                    Obs = "Festejar final de ano. Teremos som ao vivo e muita cachaça. Roda de samba até altas horas.",
                     ValorComBebida = 40.00,
                     ValorSemBebida = 25.00
                 },
@@ -35,11 +35,13 @@ namespace Churras.Data
                 {
                     Quando = DateTime.Now,
                     Porque = "Sem Motivo",
-                    Obs = "Sem motivo o churrasquinho.",
+                    Obs = "Sem motivo o churrasquinho. Afinal, para que precisamos de motivo para comer um bom assado?",
                     ValorComBebida = 30.00,
                     ValorSemBebida = 15.00
                 }
             });
+
+            var c = context.Set<Churrasco>().Local.FirstOrDefault(ch => ch.Porque.Equals("Aniver do Gui"));
 
             context.Set<Participante>().AddRange(new List<Participante>()
             {
@@ -50,7 +52,7 @@ namespace Churras.Data
                     Bebida = false,
                     Pago = true,
                     Obs = "",
-                    Churrasco = context.Set<Churrasco>().Local.FirstOrDefault(c => c.Porque.Equals("Aniver do Gui"))
+                    Churrasco = c
                 },
                 new Participante()
                 {
@@ -59,7 +61,7 @@ namespace Churras.Data
                     Bebida = false,
                     Pago = false,
                     Obs = "",
-                    Churrasco = context.Set<Churrasco>().Local.FirstOrDefault(c => c.Porque.Equals("Aniver do Gui"))
+                    Churrasco = c
                 },
                 new Participante()
                 {
@@ -68,19 +70,156 @@ namespace Churras.Data
                     Bebida = true,
                     Pago = false,
                     Obs = "",
-                    Churrasco = context.Set<Churrasco>().Local.FirstOrDefault(c => c.Porque.Equals("Aniver do Gui"))
+                    Churrasco = c
                 },
                 new Participante()
                 {
                     Nome = "Paulo",
-                    ValorContribuicao = 25.00,
+                    ValorContribuicao = 30.00,
                     Bebida = true,
                     Pago = true,
                     Obs = "Fico só até 21h",
-                    Churrasco = context.Set<Churrasco>().Local.FirstOrDefault(c => c.Porque.Equals("Aniver do Gui"))
+                    Churrasco = c
                 }
             });
 
+            c = context.Set<Churrasco>().Local.FirstOrDefault(ch => ch.Porque.Equals("Final de Ano"));
+
+            context.Set<Participante>().AddRange(new List<Participante>()
+            {
+                new Participante()
+                {
+                    Nome = "Marcos",
+                    ValorContribuicao = 25.00,
+                    Bebida = false,
+                    Pago = true,
+                    Obs = "Levo a viola.",
+                    Churrasco = c
+                },
+                new Participante()
+                {
+                    Nome = "Daniela",
+                    ValorContribuicao = 25.00,
+                    Bebida = false,
+                    Pago = false,
+                    Obs = "",
+                    Churrasco = c
+                },
+                new Participante()
+                {
+                    Nome = "Douglas",
+                    ValorContribuicao = 40.00,
+                    Bebida = true,
+                    Pago = false,
+                    Obs = "Galera, vão de Uber",
+                    Churrasco = c
+                },
+                new Participante()
+                {
+                    Nome = "Marcela",
+                    ValorContribuicao = 40.00,
+                    Bebida = true,
+                    Pago = true,
+                    Obs = "To fora da cachaça",
+                    Churrasco = c
+                },
+                new Participante()
+                {
+                    Nome = "Karine",
+                    ValorContribuicao = 25.00,
+                    Bebida = false,
+                    Pago = false,
+                    Obs = "",
+                    Churrasco = c
+                },
+                new Participante()
+                {
+                    Nome = "Josiel",
+                    ValorContribuicao = 40.00,
+                    Bebida = true,
+                    Pago = false,
+                    Obs = "",
+                    Churrasco = c
+                },
+                new Participante()
+                {
+                    Nome = "Grazi",
+                    ValorContribuicao = 40.00,
+                    Bebida = true,
+                    Pago = true,
+                    Obs = "Vou pra balada depois",
+                    Churrasco = c
+                }
+            });
+
+            c = context.Set<Churrasco>().Local.FirstOrDefault(ch => ch.Porque.Equals("Sem Motivo"));
+
+            context.Set<Participante>().AddRange(new List<Participante>()
+            {
+                new Participante()
+                {
+                    Nome = "Marcos",
+                    ValorContribuicao = 25.00,
+                    Bebida = false,
+                    Pago = true,
+                    Obs = "Levo a viola.",
+                    Churrasco = c
+                },
+                new Participante()
+                {
+                    Nome = "Daniela",
+                    ValorContribuicao = 25.00,
+                    Bebida = false,
+                    Pago = false,
+                    Obs = "",
+                    Churrasco = c
+                },
+                new Participante()
+                {
+                    Nome = "Douglas",
+                    ValorContribuicao = 40.00,
+                    Bebida = true,
+                    Pago = false,
+                    Obs = "Galera, vão de Uber",
+                    Churrasco = c
+                },
+                new Participante()
+                {
+                    Nome = "Marcela",
+                    ValorContribuicao = 40.00,
+                    Bebida = true,
+                    Pago = true,
+                    Obs = "To fora da cachaça",
+                    Churrasco = c
+                },
+                new Participante()
+                {
+                    Nome = "Karine",
+                    ValorContribuicao = 25.00,
+                    Bebida = false,
+                    Pago = false,
+                    Obs = "",
+                    Churrasco = c
+                },
+                new Participante()
+                {
+                    Nome = "Josiel",
+                    ValorContribuicao = 40.00,
+                    Bebida = true,
+                    Pago = false,
+                    Obs = "",
+                    Churrasco = c
+                },
+                new Participante()
+                {
+                    Nome = "Grazi",
+                    ValorContribuicao = 40.00,
+                    Bebida = true,
+                    Pago = true,
+                    Obs = "Vou pra balada depois",
+                    Churrasco = c
+                }
+            });
 
             base.Seed(context);
         }

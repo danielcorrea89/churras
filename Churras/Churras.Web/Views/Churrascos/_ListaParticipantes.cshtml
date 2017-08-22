@@ -18,7 +18,7 @@
                     <th width="30%">
                         @Html.DisplayNameFor(model => model.Participantes.FirstOrDefault().Nome)
                     </th>
-                    <th width="10%">
+                    <th width="15%">
                         Valor
                     </th>
                     <th width="10%">
@@ -27,7 +27,7 @@
                     <th width="10%">
                         Bebida
                     </th>
-                    <th width="40%">
+                    <th width="35%">
                         @Html.DisplayNameFor(model => model.Participantes.FirstOrDefault().Obs)
                     </th>
                 </tr>
@@ -38,14 +38,15 @@
                         <td>
                             @Html.HiddenFor(modelItem => item.Key)
 
-                            @Html.DisplayFor(modelItem => item.Nome) 
-                            @Html.ActionLink("x", "RemoverParticipante", new { key= item.Key, churrascoKey = Model.ChurrascoKey })
+                            @Html.DisplayFor(modelItem => item.Nome)
+                            @Html.ActionLink("x", "RemoverParticipante", new { key = item.Key, churrascoKey = Model.ChurrascoKey })
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.ValorContribuicao)
+                            R$@Html.DisplayFor(modelItem => item.ValorContribuicao)
                         </td>
                         <td>
-                            @Html.EditorFor(modelItem => item.Pago, new { @class = "form-control" })
+                            @{ var check = ""; if (item.Pago) { check = "checked"; } }
+                            <input class="pago" type="checkbox" @check name="item.Pago" onchange="Pagar(this);" id="item_pago" data-url="@Url.Action("PagarParticipante", new { key = item.Key, churrascoKey = Model.ChurrascoKey })" data-key="@item.Key" />
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Bebida)
@@ -65,13 +66,18 @@
     }
 </div>
 
-@section scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $.validator.unobtrusive.parse($("form"));
-        });
-    </script>
-}
+<script>
+    function Pagar(data) {
+        if (data.checked != true) {
+            alert('Desculpe, não fornecemos devoluções. Remova o participante.')
+            data.checked = true;
+            return false;
+        }
+        else {
+            alert('Obrigado por Pagar.');
+            $.post(data.dataset.url, function (data) {
+                location.reload();
+            });
+        }
+    };
+</script>

@@ -59,10 +59,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChurrasDbContext.cs" />
+    <Compile Include="Implementation\ChurrasDbContext.cs" />
     <Compile Include="ChurrasDbInitializer.cs" />
-    <Compile Include="GenericRepository.cs" />
-    <Compile Include="IRepository.cs" />
+    <Compile Include="Implementation\GenericRepository.cs" />
+    <Compile Include="Interfaces\IChurrasDbContext.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnityConfig.cs" />
   </ItemGroup>

@@ -52,8 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChurrascoService.cs" />
-    <Compile Include="IChurrascoService.cs" />
+    <Compile Include="ChurrasAppService.cs" />
+    <Compile Include="IChurrasAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnityConfig.cs" />
   </ItemGroup>

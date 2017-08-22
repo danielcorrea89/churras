@@ -29,7 +29,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Participante.ValorContribuicao, htmlAttributes: new { @class = "control-label col-sm-12" })
                         <div class="col-sm-12">
-                            @Html.EditorFor(model => model.Participante.ValorContribuicao, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Participante.ValorContribuicao, new { htmlAttributes = new { @type = "number", @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Participante.ValorContribuicao, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -67,25 +67,28 @@
                     @Html.ValidationMessageFor(model => model.Participante.Obs, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-            <input type="submit" class="btn btn-primary" value="Adicionar Participante" />
-
         </div>
 
         <div class="modal-footer">
-            <input type="submit" class="btn btn-primary" value="Adicionar Participante" />
+            <input type="submit" class="btn btn-primary" value="+ Adicionar Participante" />
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         </div>
     }
 </div>
 
-@section scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jqueryval")
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            $.validator.unobtrusive.parse($("form"));
-        });
-    </script>
-}
+<script>
+    var semBebida = '@Model.ValorSemBebida';
+    var comBebida = '@Model.ValorComBebida';
+
+    $('#Participante_ValorContribuicao').val(semBebida);
+
+    $('#Participante_Bebida').change(function () {
+        if (this.checked == true)
+            $('#Participante_ValorContribuicao').val(parseFloat(comBebida));
+        else
+            $('#Participante_ValorContribuicao').val(parseFloat(semBebida));
+    });
+</script>

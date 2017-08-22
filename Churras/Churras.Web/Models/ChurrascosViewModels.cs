@@ -25,6 +25,8 @@ namespace Churras.Web.Models.Churrascos
     {
         public Participante Participante { get; set; }
         public int ChurrascoKey { get; set; }
+        public double ValorSemBebida { get; set; }
+        public double ValorComBebida { get; set; }
     }
 
     public class ListaParticipantesViewModel
